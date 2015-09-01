@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="ViewabilityTest" duration-ms="10389" started-at="2015-08-29T09:58:59Z" finished-at="2015-08-29T09:59:09Z">
+    <groups>
+    </groups>
+    <test name="Viewability" duration-ms="10389" started-at="2015-08-29T09:58:59Z" finished-at="2015-08-29T09:59:09Z">
+      <class name="com.flipkart.android.POC">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.flipkart.android.POC@5f2050f6]" name="setup" is-config="true" duration-ms="13958" started-at="2015-08-29T15:28:21Z" finished-at="2015-08-29T15:28:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="POC_setup()[pri:0, instance:com.flipkart.android.POC@5f2050f6]" name="POC_setup" is-config="true" duration-ms="23822" started-at="2015-08-29T15:28:35Z" depends-on-methods="com.flipkart.Drivers.BaseConfig.setup" finished-at="2015-08-29T15:28:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- POC_setup -->
+        <test-method status="PASS" signature="SearchForAd()[pri:0, instance:com.flipkart.android.POC@5f2050f6]" name="SearchForAd" duration-ms="10370" started-at="2015-08-29T15:28:59Z" finished-at="2015-08-29T15:29:09Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SearchForAd -->
+      </class> <!-- com.flipkart.android.POC -->
+    </test> <!-- Viewability -->
+  </suite> <!-- ViewabilityTest -->
+</testng-results>
