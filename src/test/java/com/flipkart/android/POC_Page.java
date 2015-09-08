@@ -140,24 +140,33 @@ public class POC_Page extends AppiumBasePage{
 
     public  void compareToTopAndBottom(WebElement webElement1) throws InterruptedException {
         System.out.println("Entered compare position");
-        int X1,Y1,X2,Y2;
-        X1=webElement1.getLocation().getX();
-        Y1=webElement1.getLocation().getY();
+
+        int i=0;
+        while (true&&i<5) {
+            int X1,Y1,X2,Y2;
+            X1=webElement1.getLocation().getX();
+            Y1=webElement1.getLocation().getY();
 
 
 //        System.out.println("Screen top : "+getScreenTop()+" Screen bottom : "+getScreenBottom());
-        int height=getScreenBottom()-getScreenTop();
-        System.out.println("height : "+height/6);
-        if(Math.abs(Y1-getScreenTop())<=(height/6)){
+            int height=getScreenBottom()-getScreenTop();
+            System.out.println("height : "+height/6);
+            if(Math.abs(Y1-getScreenTop())<=(height/6)){
+                System.out.println("difference from top : "+Math.abs(Y1-getScreenTop()));
+                Thread.sleep(5000);
+                SwipeUpSmall();
+            }
+            else if(Math.abs(Y1-getScreenBottom())<=(height/6)){
+                System.out.println("difference from bottom : "+Math.abs(Y1-getScreenBottom()));
+                Thread.sleep(5000);
+                SwipeDownSmall();
+            }
+            else
+                break;
 
-            Thread.sleep(5000);
-            SwipeToUpSmall();
+            i++;
         }
-        else if(Math.abs(Y1-getScreenBottom())<=(height/6)){
 
-            Thread.sleep(5000);
-            SwipeToDownSmall();
-        }
     }
 
 
@@ -217,20 +226,33 @@ public class POC_Page extends AppiumBasePage{
 
 
 
-                    WebElement layoutelement= driver.findElementByXPath("(//android.widget.ImageView[@resource-id='com.flipkart.android.feature.AdsSdkInitializeChanges:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]");
-                        System.out.println(layoutelement.getLocation());
+                    WebElement layoutelement= driver.findElementByXPath("(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]");
+                        System.out.println("layout loc"+layoutelement.getLocation());
                     setViewSize(layoutelement.getSize());
+
+                    WebElement adelement=driver.findElement(getBy(landingPageLocators.get("adproducts")));
 
 //                    List<WebElement> webElements=driver.findElementsByXPath("//android.widget.ListView/android.widget.LinearLayout");
 //
 //                    WebElement w=webElements.get(0);
 
+                        System.out.println("ad loc1"+adelement.getLocation());
                     SwipeElementToScreenTop(layoutelement);
+                    Thread.sleep(2000);
+                    adelement=driver.findElement(getBy(landingPageLocators.get("adproducts")));
+                        System.out.println("ad loc2"+adelement.getLocation());
                     SwipeToTop(getViewSize().getHeight()/2);
-                        System.out.println(layoutelement.getLocation());
-                    layoutelement= driver.findElementByXPath("(//android.widget.ImageView[@resource-id='com.flipkart.android.feature.AdsSdkInitializeChanges:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]");
-                        System.out.println(layoutelement.getLocation());
+//                        System.out.println(layoutelement.getLocation());
+                    Thread.sleep(2000);
+                    adelement=driver.findElement(getBy(landingPageLocators.get("adproducts")));
+                        System.out.println("ad loc3"+adelement.getLocation());
+//                    layoutelement= driver.findElementByXPath("(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]");
+//                        System.out.println(layoutelement.getLocation());
+
                     SwipeElementToScreenBottom(layoutelement);
+                    Thread.sleep(2000);
+                    adelement=driver.findElement(getBy(landingPageLocators.get("adproducts")));
+                        System.out.println("ad loc4"+adelement.getLocation());
 
 
                     return true;
@@ -540,6 +562,16 @@ public class POC_Page extends AppiumBasePage{
 
     public void SwipeToTop(int distance) {
         ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenTop()+1, Math.round(ScreeWidth() / 2), getScreenTop()+distance, 2000);
+    }
+
+    public void SwipeUpSmall() {
+//        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenTop()+getScreenHeight()/6, Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/2, 0);
+        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), (int) Math.round(ScreenHeight() / 2), Math.round(ScreeWidth() / 2), (int) Math.round(ScreenHeight() / 1.1), 0);
+    }
+
+    public void SwipeDownSmall() {
+//        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/6, Math.round(ScreeWidth() / 2), getScreenTop()+getScreenHeight()/4, 0);
+        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), (int) Math.round(ScreenHeight() / 1.2), Math.round(ScreeWidth() / 2), (int) Math.round(ScreenHeight() /2.5), 0);
     }
 
     public void SwipeLeft(int x,int y) {

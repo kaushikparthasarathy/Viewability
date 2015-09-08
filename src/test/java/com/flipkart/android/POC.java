@@ -16,7 +16,7 @@ public class POC extends BaseConfig {
         pocpage = new POC_Page(driver);
 //        for(int i=0;i<5;i++)
 //            pocpage.SwipeToDownSmall();
-        pocpage.ClickSubmit();
+//        pocpage.ClickSubmit();
         pocpage.SkipLogin();
 //        status1 = pocpage.login1("mafiaflipkart1@gmail.com", "Adplatformtest");
     }

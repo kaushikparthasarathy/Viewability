@@ -1,7 +1,7 @@
-/Users/kaushik.p/Downloads/ViewabilityTest/src/test/java/com/flipkart/Pages/Locator.java
-/Users/kaushik.p/Downloads/ViewabilityTest/src/test/java/com/flipkart/android/POC_Page.java
-/Users/kaushik.p/Downloads/ViewabilityTest/src/test/java/com/flipkart/Drivers/BaseConfig.java
-/Users/kaushik.p/Downloads/ViewabilityTest/src/test/java/com/flipkart/android/POC.java
-/Users/kaushik.p/Downloads/ViewabilityTest/src/test/java/com/flipkart/Pages/BasePage.java
-/Users/kaushik.p/Downloads/ViewabilityTest/src/test/java/com/flipkart/Drivers/SwipeableWebDriver.java
-/Users/kaushik.p/Downloads/ViewabilityTest/src/test/java/com/flipkart/Pages/AppiumBasePage.java
+/Users/kaushik.p/Viewability/src/test/java/com/flipkart/Drivers/BaseConfig.java
+/Users/kaushik.p/Viewability/src/test/java/com/flipkart/Drivers/SwipeableWebDriver.java
+/Users/kaushik.p/Viewability/src/test/java/com/flipkart/Pages/AppiumBasePage.java
+/Users/kaushik.p/Viewability/src/test/java/com/flipkart/Pages/Locator.java
+/Users/kaushik.p/Viewability/src/test/java/com/flipkart/Pages/BasePage.java
+/Users/kaushik.p/Viewability/src/test/java/com/flipkart/android/POC_Page.java
+/Users/kaushik.p/Viewability/src/test/java/com/flipkart/android/POC.java
