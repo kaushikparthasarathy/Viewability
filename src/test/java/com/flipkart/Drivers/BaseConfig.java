@@ -19,6 +19,13 @@ public class BaseConfig {
     public void setup(){
 
         try {
+//            String[] cmd1 = {"/Applications/Genymotion.app/Contents/MacOS/player", "--vm-name", "06815646-8091-4d65-85a0-b4d576df6486"};
+//            String[] cmd2 = {"/bin/sh", "-c","osascript -e \'tell application \"Terminal\" to do script \"appium\"\'"};
+//
+////            Process process=Runtime.getRuntime().exec(cmd2);
+//
+//            Runtime.getRuntime().exec(cmd1);
+//            Thread.sleep(20000);
 
             //ServerSocket s = create(new int[] { 3843, 4584, 4843 });
             //System.out.println("listening on port: " + s.getLocalPort());
@@ -33,7 +40,7 @@ public class BaseConfig {
     public DesiredCapabilities getCapabilities1(){
 
         File appDir = new File("/Users/kaushik.p/Documents/Apks/");
-        File app = new File(appDir, "flipkart_ecom_app_4_1_610000.apk");
+        File app = new File(appDir, "flipkart_ecom_app-debug.apk");
 
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -44,7 +51,7 @@ public class BaseConfig {
         capabilities.setCapability("automationName", "Appium");
         capabilities.setCapability("platformVersion", "5.0");
 
-        capabilities.setCapability("app-package", "com.flipkart.android.feature.AdsSdkInitializeChanges");
+        capabilities.setCapability("app-package", "com.flipkart.android");
         capabilities.setCapability("app-activity", "com.flipkart.android.SplashActivity");
 
         System.out.println(capabilities);

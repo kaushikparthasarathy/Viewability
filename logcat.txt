@@ -1,4 +1,0 @@
---------- beginning of system
---------- beginning of main
-D/AD_SDK_LOG( 5512): Event String = {"adunits":[{"bannerId":"6242351","impressionId":"RESPID9G2nv1Tz86r_1"}],"event":"adBeacon","deviceAdId":"","eventTime":"2015-08-26T04:12:03.335-04:00","id":"b60a20df1e5cc890e11e2eafc9e0b3cc","responseId":"RESPID9G2nv1Tz86r","sdkAdId":"ae555e9e-c36a-4ef2-b807-91f9db020f53","dontTrack":false}
-D/AD_SDK_LOG( 5512): Event String = {"event":"adView","viewStartTime":"2015-08-26T04:12:09.049-04:00","duration":2276,"maxViewPercentage":100,"adUnit":"SUMMARY","pageView":"LIST_VIEW","bannerId":"6242351","impressionId":"RESPID9G2nv1Tz86r_1","listingId":"LSTRCTDZYUFH8GBQBCTAIVYVT","deviceAdId":"","eventTime":"2015-08-26T04:12:11.325-04:00","id":"4a3464888f43e027e75949c42f617da3","responseId":"RESPID9G2nv1Tz86r","sdkAdId":"ae555e9e-c36a-4ef2-b807-91f9db020f53","dontTrack":false}

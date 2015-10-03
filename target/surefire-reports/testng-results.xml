@@ -1,24 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" total="7" passed="7">
   <reporter-output>
   </reporter-output>
-  <suite name="ViewabilityTest" duration-ms="67935" started-at="2015-09-07T09:56:59Z" finished-at="2015-09-07T09:58:07Z">
+  <suite name="ViewabilityTest" duration-ms="393834" started-at="2015-10-03T15:30:12Z" finished-at="2015-10-03T15:36:46Z">
     <groups>
     </groups>
-    <test name="Viewability" duration-ms="67935" started-at="2015-09-07T09:56:59Z" finished-at="2015-09-07T09:58:07Z">
+    <test name="Viewability" duration-ms="393834" started-at="2015-10-03T15:30:12Z" finished-at="2015-10-03T15:36:46Z">
       <class name="com.flipkart.android.POC">
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.flipkart.android.POC@5f2050f6]" name="setup" is-config="true" duration-ms="10004" started-at="2015-09-07T15:26:39Z" finished-at="2015-09-07T15:26:49Z">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="setup" is-config="true" duration-ms="12103" started-at="2015-10-03T20:59:46Z" finished-at="2015-10-03T20:59:58Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="POC_setup()[pri:0, instance:com.flipkart.android.POC@5f2050f6]" name="POC_setup" is-config="true" duration-ms="10531" started-at="2015-09-07T15:26:49Z" depends-on-methods="com.flipkart.Drivers.BaseConfig.setup" finished-at="2015-09-07T15:26:59Z">
+        <test-method status="PASS" signature="POC_setup()[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="POC_setup" is-config="true" duration-ms="13611" started-at="2015-10-03T20:59:58Z" depends-on-methods="com.flipkart.Drivers.BaseConfig.setup" finished-at="2015-10-03T21:00:12Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- POC_setup -->
-        <test-method status="PASS" signature="SearchForAd()[pri:0, instance:com.flipkart.android.POC@5f2050f6]" name="SearchForAd" duration-ms="67922" started-at="2015-09-07T15:26:59Z" finished-at="2015-09-07T15:28:07Z">
+        <test-method status="PASS" signature="SearchForAdAndRemoveAdFromScreen()[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="SearchForAdAndRemoveAdFromScreen" duration-ms="34474" started-at="2015-10-03T21:00:12Z" finished-at="2015-10-03T21:00:46Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- SearchForAd -->
+        </test-method> <!-- SearchForAdAndRemoveAdFromScreen -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="tearDown" is-config="true" duration-ms="0" started-at="2015-10-03T21:00:46Z" finished-at="2015-10-03T21:00:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=SearchForAdAndRemoveAdFromScreen status=SUCCESS method=POC.SearchForAdAndRemoveAdFromScreen()[pri:0, instance:com.flipkart.android.POC@2c6a3f77] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="SearchForAdAndClickOnIt()[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="SearchForAdAndClickOnIt" duration-ms="51014" started-at="2015-10-03T21:00:46Z" finished-at="2015-10-03T21:01:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SearchForAdAndClickOnIt -->
+        <test-method status="PASS" signature="SearchForAdAndToggleToGenerateEvent()[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="SearchForAdAndToggleToGenerateEvent" duration-ms="57632" started-at="2015-10-03T21:01:37Z" finished-at="2015-10-03T21:02:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SearchForAdAndToggleToGenerateEvent -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="tearDown" is-config="true" duration-ms="0" started-at="2015-10-03T21:01:37Z" finished-at="2015-10-03T21:01:37Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=SearchForAdAndClickOnIt status=SUCCESS method=POC.SearchForAdAndClickOnIt()[pri:0, instance:com.flipkart.android.POC@2c6a3f77] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="SwipeOnADToProductEvent()[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="SwipeOnADToProductEvent" duration-ms="53756" started-at="2015-10-03T21:02:35Z" finished-at="2015-10-03T21:03:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SwipeOnADToProductEvent -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="tearDown" is-config="true" duration-ms="0" started-at="2015-10-03T21:02:35Z" finished-at="2015-10-03T21:02:35Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=SearchForAdAndToggleToGenerateEvent status=SUCCESS method=POC.SearchForAdAndToggleToGenerateEvent()[pri:0, instance:com.flipkart.android.POC@2c6a3f77] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="tearDown" is-config="true" duration-ms="0" started-at="2015-10-03T21:03:29Z" finished-at="2015-10-03T21:03:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=SwipeOnADToProductEvent status=SUCCESS method=POC.SwipeOnADToProductEvent()[pri:0, instance:com.flipkart.android.POC@2c6a3f77] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="OpenDrawerViewToSeeAd()[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="OpenDrawerViewToSeeAd" duration-ms="61116" started-at="2015-10-03T21:03:29Z" finished-at="2015-10-03T21:04:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- OpenDrawerViewToSeeAd -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="tearDown" is-config="true" duration-ms="0" started-at="2015-10-03T21:04:30Z" finished-at="2015-10-03T21:04:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=OpenDrawerViewToSeeAd status=SUCCESS method=POC.OpenDrawerViewToSeeAd()[pri:0, instance:com.flipkart.android.POC@2c6a3f77] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="PressBackButtonOnAds()[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="PressBackButtonOnAds" duration-ms="80844" started-at="2015-10-03T21:04:30Z" finished-at="2015-10-03T21:05:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PressBackButtonOnAds -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="tearDown" is-config="true" duration-ms="0" started-at="2015-10-03T21:05:51Z" finished-at="2015-10-03T21:05:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=PressBackButtonOnAds status=SUCCESS method=POC.PressBackButtonOnAds()[pri:0, instance:com.flipkart.android.POC@2c6a3f77] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="CheckForEventsWhenNoAdsAppear()[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="CheckForEventsWhenNoAdsAppear" duration-ms="54979" started-at="2015-10-03T21:05:51Z" finished-at="2015-10-03T21:06:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CheckForEventsWhenNoAdsAppear -->
+        <test-method status="PASS" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.flipkart.android.POC@2c6a3f77]" name="tearDown" is-config="true" duration-ms="1" started-at="2015-10-03T21:06:46Z" finished-at="2015-10-03T21:06:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=CheckForEventsWhenNoAdsAppear status=SUCCESS method=POC.CheckForEventsWhenNoAdsAppear()[pri:0, instance:com.flipkart.android.POC@2c6a3f77] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
       </class> <!-- com.flipkart.android.POC -->
     </test> <!-- Viewability -->
   </suite> <!-- ViewabilityTest -->

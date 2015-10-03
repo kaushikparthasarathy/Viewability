@@ -151,14 +151,14 @@ public class POC_Page extends AppiumBasePage{
 //        System.out.println("Screen top : "+getScreenTop()+" Screen bottom : "+getScreenBottom());
             int height=getScreenBottom()-getScreenTop();
             System.out.println("height : "+height/6);
-            if(Math.abs(Y1-getScreenTop())<=(height/6)){
+            if(Math.abs(Y1-getScreenTop())<=(height/8)){
                 System.out.println("difference from top : "+Math.abs(Y1-getScreenTop()));
-                Thread.sleep(5000);
+
                 SwipeUpSmall();
             }
             else if(Math.abs(Y1-getScreenBottom())<=(height/6)){
                 System.out.println("difference from bottom : "+Math.abs(Y1-getScreenBottom()));
-                Thread.sleep(5000);
+
                 SwipeDownSmall();
             }
             else
@@ -181,11 +181,7 @@ public class POC_Page extends AppiumBasePage{
         return false;
     }
 
-    public void RemoveAdFromScreen(){
-        while(isElementPresent(getBy(landingPageLocators.get("adproducts")))){
-            SwipeToBottom();
-        }
-    }
+
 
     public List<String> grep(Reader inReader, String searchFor) throws IOException {
         System.out.println("entered grep");
@@ -213,6 +209,23 @@ public class POC_Page extends AppiumBasePage{
 
         return lines;
     }
+
+    public void RemoveAdFromScreen(){
+
+//        WebElement layoutelement = driver.findElementByXPath("(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]");
+        while(isElementPresent(getBy("xpath=(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]"))){
+            SwipeToBottom();
+        }
+    }
+
+    public boolean isAdPresentInScreen(){
+        return isElementPresent(getBy(landingPageLocators.get("adproducts")));
+    }
+    public WebElement getAdElement(){
+        return driver.findElement(getBy(landingPageLocators.get("adproducts")));
+//        return driver.findElementByXPath("(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image'])");
+    }
+
     public boolean CheckAdProd() throws Exception {
         int i;
 
@@ -223,36 +236,51 @@ public class POC_Page extends AppiumBasePage{
 //                UiObject btView = new UiObject(new UiSelector().text("Bluetooth"));
                 if (isElementPresent(getBy(landingPageLocators.get("adproducts")))) {
                     compareToTopAndBottom(driver.findElement(getBy(landingPageLocators.get("adproducts"))));
-
-
-
-                    WebElement layoutelement= driver.findElementByXPath("(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]");
-                        System.out.println("layout loc"+layoutelement.getLocation());
+                    WebElement layoutelement = driver.findElementByXPath("(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]");
+                    System.out.println("layout loc" + layoutelement.getLocation());
                     setViewSize(layoutelement.getSize());
 
-                    WebElement adelement=driver.findElement(getBy(landingPageLocators.get("adproducts")));
+//                    WebElement adelement=driver.findElementByXPath("(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image'])");
+//                    ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", adelement);
 
 //                    List<WebElement> webElements=driver.findElementsByXPath("//android.widget.ListView/android.widget.LinearLayout");
 //
 //                    WebElement w=webElements.get(0);
 
-                        System.out.println("ad loc1"+adelement.getLocation());
-                    SwipeElementToScreenTop(layoutelement);
-                    Thread.sleep(2000);
-                    adelement=driver.findElement(getBy(landingPageLocators.get("adproducts")));
-                        System.out.println("ad loc2"+adelement.getLocation());
-                    SwipeToTop(getViewSize().getHeight()/2);
-//                        System.out.println(layoutelement.getLocation());
-                    Thread.sleep(2000);
-                    adelement=driver.findElement(getBy(landingPageLocators.get("adproducts")));
-                        System.out.println("ad loc3"+adelement.getLocation());
-//                    layoutelement= driver.findElementByXPath("(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]");
-//                        System.out.println(layoutelement.getLocation());
+//                        System.out.println("ad loc1" + adelement.getLocation());
+//                    driver.swipe(100, adelement.getLocation().getY(), 100, 200, 4000);
+//                    driver.findElement(getBy(landingPageLocators.get("firstprodtext")));
+//                    adelement=driver.findElement(getBy(landingPageLocators.get("adproducts")));
+//                    System.out.println("ad loc1" + adelement.getLocation());
+//                    driver.swipe(100, adelement.getLocation().getY(), 100, 300, 4000);
+//                    driver.findElement(getBy(landingPageLocators.get("firstprodtext")));
+//                    adelement = driver.findElement(getBy(landingPageLocators.get("adproducts")));
+//                    System.out.println("ad loc1" + adelement.getLocation());
+//                    driver.swipe(100, adelement.getLocation().getY(), 100, 700, 4000);
+//                    adelement=driver.findElement(getBy(landingPageLocators.get("adproducts")));
+//                    System.out.println("ad loc1"+adelement.getLocation());
 
-                    SwipeElementToScreenBottom(layoutelement);
-                    Thread.sleep(2000);
-                    adelement=driver.findElement(getBy(landingPageLocators.get("adproducts")));
-                        System.out.println("ad loc4"+adelement.getLocation());
+//
+//                    SwipeElementToScreenTop(adelement);
+//
+//                    adelement=driver.findElement(getBy(landingPageLocators.get("adproducts")));
+////                    ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", adelement);
+//
+//                    System.out.println("ad loc2"+adelement.getLocation());
+//                    SwipeToTop(getViewSize().getHeight()/2);
+////                        System.out.println(layoutelement.getLocation());
+//
+//                    adelement=driver.findElement(getBy(landingPageLocators.get("adproducts")));
+////                    ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", adelement);
+//                        System.out.println("ad loc3"+adelement.getLocation());
+////                    layoutelement= driver.findElementByXPath("(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]");
+////                        System.out.println(layoutelement.getLocation());
+//
+//                    SwipeElementToScreenBottom(adelement);
+//
+//                    adelement=driver.findElement(getBy(landingPageLocators.get("adproducts")));
+////                    ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", adelement);
+//                        System.out.println("ad loc4"+adelement.getLocation());
 
 
                     return true;
@@ -289,7 +317,14 @@ public class POC_Page extends AppiumBasePage{
             }
             Thread.sleep(3000);
             compareToTopAndBottom(driver.findElement(getBy(landingPageLocators.get("adproducts"))));
+
+            WebElement adlayoutelement = driver.findElementByXPath("(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]");
+            System.out.println("layout loc" + adlayoutelement.getLocation());
+            setViewSize(adlayoutelement.getSize());
+
             driver.findElement(getBy(landingPageLocators.get("adproducts"))).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(getBy(productPageLocators.get("productname"))));
+
 //            if (isElementPresent(getBy(productPageLocators.get("ToolTip3")))) {
 //                driver.findElement(getBy(productPageLocators.get("ToolTip3"))).click();
 //                return true;
@@ -363,17 +398,21 @@ public class POC_Page extends AppiumBasePage{
                     throw new Exception("browse again found in search");
                 }
                 while(!isElementPresent(getBy(landingPageLocators.get("Firstprod")),0)){
+                    System.out.println("toggle for 1st prod");
                     Toggle();
                 }
                 if (isElementPresent(getBy(landingPageLocators.get("Firstprod")),0)) {
 
+
                     setScreenTop(driver.findElements(getBy(landingPageLocators.get("Firstprod"))).get(0).getLocation().getY());
 
+
                     setScreenHeight(Math.abs(getScreenTop()-getScreenBottom()));
-                    List<WebElement> webElements=driver.findElementsByXPath("//android.widget.ListView");
+                    WebElement webElement1=driver.findElement(getBy(landingPageLocators.get("layout")));
+//                    List<WebElement> webElements=driver.findElementsByXPath("//android.widget.ListView");
 //                    WebElement webElement1=driver.findElementByXPath("//android.widget.ListView/following-sibling::android.widget.RelativeLayout[1]");
-//                    System.out.println(webElement1.getLocation());
-                    setStartOfView(webElements.get(0).getLocation().getY());
+                    System.out.println(webElement1.getLocation());
+                    setStartOfView(webElement1.getLocation().getY());
 
                 }
                 wait.until(ExpectedConditions.visibilityOfElementLocated(getBy(landingPageLocators.get("toggle2"))));
@@ -402,6 +441,42 @@ public class POC_Page extends AppiumBasePage{
 
     }
 
+
+    public boolean openDrawerView() throws Exception {
+        try {
+            String prodtitle1 = driver.findElement(getBy(productPageLocators.get("ProductTitleid"))).getText();
+            WebElement pull = driver.findElement(getBy(productPageLocators.get("pullout")));
+            SwipeLeft(30,pull.getLocation().getY());
+            if (isElementPresent(getBy(productPageLocators.get("adindrawer")))) {
+                String prodtitle2 = driver.findElements(getBy(productPageLocators.get("ProductTitleidindrawer"))).get(0).getText();
+                if (prodtitle1.equals(prodtitle2)) {
+                    Back2();
+                    return true;
+                } else {
+                    Back2();
+                    throw new Exception("Product title mismatch in drawer view");
+                }
+            } else {
+                Back2();
+                throw new Exception("Drawer element not present in drawer view");
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            individualTestdescription+=","+getExceptionMessage(e);
+            return false;
+        }
+    }
+
+
+    public  void Click(int x,int y){
+        driver.tap(1,x,y,1);
+    }
+
+    public  void Click(WebElement webElement){
+        driver.tap(1,webElement,1);
+    }
+
     public boolean Logo() throws Exception {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(getBy(homePageLocators.get("FlipkartIcon"))));
@@ -424,14 +499,7 @@ public class POC_Page extends AppiumBasePage{
             System.out.println("entered toggle check");
 
             if (isElementPresent(getBy(landingPageLocators.get("toggle2")))) {
-
-
                 driver.findElement(getBy(landingPageLocators.get("toggle2"))).click();
-                Thread.sleep(2000);
-
-
-
-
                 return true;
             }
             else
@@ -534,8 +602,7 @@ public class POC_Page extends AppiumBasePage{
         int elementY=webElement.getLocation().getY()+getViewSize().getHeight();
 
         // appium converts press-wait-moveto-release to a swipe action
-        touchAction.press(halfwidth,  elementY).waitAction(2000)
-                .moveTo(halfwidth, bottomEnd).release();
+
 
         int distance=bottomEnd-elementY;
         if(distance>0)
@@ -545,38 +612,99 @@ public class POC_Page extends AppiumBasePage{
 
     }
 
+    public boolean BackInfinite()  {
+        try {
+            System.out.println("reached back infi");
+
+
+
+            while (isElementPresent(getBy(productPageLocators.get("backbutton")))) {
+                driver.findElement(getBy(productPageLocators.get("backbutton"))).click();
+            }
+
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            individualTestdescription+=","+getExceptionMessage(e);
+            return false;
+        }
+        return true;
+    }
+
+
+    public boolean Back2() throws Exception {
+        try {
+            System.out.println("reached back22222");
+            if (isElementPresent(getBy(productPageLocators.get("backbutton"))))
+                driver.findElement(getBy(productPageLocators.get("backbutton"))).click();
+
+            Thread.sleep(1000);
+            if (isElementPresent(getBy(productPageLocators.get("backbutton")))) {
+                driver.findElement(getBy(productPageLocators.get("backbutton"))).click();
+                Thread.sleep(1000);
+                return true;
+            }
+            else throw new Exception("Back button not found in Back2");
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            individualTestdescription+=","+getExceptionMessage(e);
+            return false;
+        }
+    }
+
+    public boolean Back1() throws Exception {
+        try {
+            System.out.println("reached back1111");
+
+            if (isElementPresent(getBy(productPageLocators.get("backbutton")))) {
+                System.out.println("reached back1111aaaaaa");
+
+                driver.findElement(getBy(productPageLocators.get("backbutton"))).click();
+
+                return true;
+            }
+            else throw new Exception("Back button not found in back 1");
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            individualTestdescription+=","+getExceptionMessage(e);
+            return false;
+        }
+    }
+
 
     public void SwipeToBottom() {
-        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/6, Math.round(ScreeWidth() / 2), getScreenTop()+getScreenHeight()/6, 2000);
+        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/4, Math.round(ScreeWidth() / 2), getScreenTop()+getScreenHeight()/6, 0);
     }
 
 
     public void SwipeToBottom(int distance) {
-        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenBottom()-1, Math.round(ScreeWidth() / 2), getScreenBottom()-distance, 2000);
+        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/4, Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/4-distance, 0);
     }
 
 
     public void SwipeToTop() {
-        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenTop()+getScreenHeight()/6, Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/6, 2000);
+        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenTop()+getScreenHeight()/6, Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/6, 0);
     }
 
     public void SwipeToTop(int distance) {
-        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenTop()+1, Math.round(ScreeWidth() / 2), getScreenTop()+distance, 2000);
+        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenTop()+1, Math.round(ScreeWidth() / 2), getScreenTop()+distance, 0);
     }
 
     public void SwipeUpSmall() {
-//        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenTop()+getScreenHeight()/6, Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/2, 0);
-        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), (int) Math.round(ScreenHeight() / 2), Math.round(ScreeWidth() / 2), (int) Math.round(ScreenHeight() / 1.1), 0);
+        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenTop(), Math.round(ScreeWidth() / 2),getScreenTop()+ getScreenHeight()/2, 0);
+//        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), (int) Math.round(ScreenHeight() / 2), Math.round(ScreeWidth() / 2), (int) Math.round(ScreenHeight() / 1.1), 0);
     }
 
     public void SwipeDownSmall() {
-//        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/6, Math.round(ScreeWidth() / 2), getScreenTop()+getScreenHeight()/4, 0);
-        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), (int) Math.round(ScreenHeight() / 1.2), Math.round(ScreeWidth() / 2), (int) Math.round(ScreenHeight() /2.5), 0);
+        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/4, Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/2, 0);
+//        ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), (int) Math.round(ScreenHeight() / 1.2), Math.round(ScreeWidth() / 2), (int) Math.round(ScreenHeight() /2.5), 0);
     }
 
     public void SwipeLeft(int x,int y) {
 
-        ((AppiumDriver) driver).swipe(x, y, 0+3*getScreenWidth() / 4 , y, 2000);
+        ((AppiumDriver) driver).swipe(x, y, 0+3*getScreenWidth() / 4 , y, 0);
     }
 
 

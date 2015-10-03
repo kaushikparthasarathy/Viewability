@@ -1,0 +1,25 @@
+SearchForAdAndRemoveAdFromScreen
+--------- beginning of /dev/log/system
+--------- beginning of /dev/log/main
+SearchForAdAndClickOnIt
+--------- beginning of /dev/log/system
+--------- beginning of /dev/log/main
+D/AD_SDK_LOG(24078): Event String = {"adunits":[{"bannerId":"7668829","impressionId":"RESP59c671d86efe893c91e0066d3fea0caa67d53307_1"}],"event":"adBeacon","deviceAdId":"","sdkAdId":"007cfe1e-4ea4-47eb-bec6-53f57ab5d3d3","eventTime":"2015-10-03T11:30:57.249-04:00","id":"d35595018d0c52f6aa6c51eb45012427","responseId":"RESP59c671d86efe893c91e0066d3fea0caa67d53307","dontTrack":false}
+D/AD_SDK_LOG(24078): Event String = {"activity":"TAP","event":"adInteraction","widget":"FILL_LIST","visiblePercentage":14,"adUnit":"SUMMARY","pageView":"LIST_FILL","bannerId":"7668829","impressionId":"RESP59c671d86efe893c91e0066d3fea0caa67d53307_1","listingId":"LSTSHOE8N3CCGDU4KQCKWPTQJ","deviceAdId":"","sdkAdId":"007cfe1e-4ea4-47eb-bec6-53f57ab5d3d3","eventTime":"2015-10-03T11:31:24.882-04:00","id":"319e912b8d94795e5d6c01b572133225","responseId":"RESP59c671d86efe893c91e0066d3fea0caa67d53307","dontTrack":false}
+SwipeOnADToProductEvent
+--------- beginning of /dev/log/main
+OpenDrawerViewToSeeAd
+--------- beginning of /dev/log/main
+PressBackButtonOnAds
+--------- beginning of /dev/log/system
+--------- beginning of /dev/log/main
+D/AD_SDK_LOG(24078): Event String = {"viewStartTime":"2015-10-03T11:34:50.554-04:00","event":"adView","maxViewPercentage":67,"duration":3672,"adUnit":"SUMMARY","pageView":"LIST_VIEW","bannerId":"7549191","impressionId":"RESPe3bcb902f755771f8cb0757df43f2df4343682ed_1","listingId":"LSTWATE8VGKTHD9HMJBFJKNBI","deviceAdId":"","sdkAdId":"007cfe1e-4ea4-47eb-bec6-53f57ab5d3d3","eventTime":"2015-10-03T11:34:54.226-04:00","id":"5e84b60fdb37d3fd237146445fa39570","responseId":"RESPe3bcb902f755771f8cb0757df43f2df4343682ed","dontTrack":false}
+PressBackButtonOnAds
+--------- beginning of /dev/log/system
+--------- beginning of /dev/log/main
+D/AD_SDK_LOG(24078): Event String = {"activity":"TAP","event":"adInteraction","widget":"FILL_LIST","visiblePercentage":29,"adUnit":"SUMMARY","pageView":"LIST_FILL","bannerId":"7668829","impressionId":"RESP6a817043f9ffb48823d4041255ec1ab5a103919e_1","listingId":"LSTSHOE8N3CCGDU4KQCKWPTQJ","deviceAdId":"","sdkAdId":"007cfe1e-4ea4-47eb-bec6-53f57ab5d3d3","eventTime":"2015-10-03T11:35:40.703-04:00","id":"f41feb7ebaa878dd2baf90b41f7128ca","responseId":"RESP6a817043f9ffb48823d4041255ec1ab5a103919e","dontTrack":false}
+D/AD_SDK_LOG(24078): Event String = {"viewStartTime":"2015-10-03T11:35:41.282-04:00","event":"adView","maxViewPercentage":100,"duration":2382,"adUnit":"DETAIL","pageView":"PRODUCT_DETAIL_VIEW","bannerId":"7668829","impressionId":"RESP6a817043f9ffb48823d4041255ec1ab5a103919e_1","listingId":"LSTSHOE8N3CCGDU4KQCKWPTQJ","deviceAdId":"","sdkAdId":"007cfe1e-4ea4-47eb-bec6-53f57ab5d3d3","eventTime":"2015-10-03T11:35:43.664-04:00","id":"3b851573da68dcf0ae4ac3ed2433a2aa","responseId":"RESP6a817043f9ffb48823d4041255ec1ab5a103919e","dontTrack":false}
+CheckForEventsWhenNoAdsAppear
+--------- beginning of /dev/log/system
+--------- beginning of /dev/log/main
+D/AD_SDK_LOG(24078): Event String = {"viewStartTime":"2015-10-03T11:36:36.891-04:00","event":"adView","maxViewPercentage":85,"duration":3619,"adUnit":"SUMMARY","pageView":"LIST_VIEW","bannerId":"7532062","impressionId":"RESPe18c2098e689c9028879f41506f9db80926f2f2f_1","listingId":"LSTACCE7PY7ZRZPGYCACK2V6K","deviceAdId":"","sdkAdId":"007cfe1e-4ea4-47eb-bec6-53f57ab5d3d3","eventTime":"2015-10-03T11:36:40.510-04:00","id":"88f2f58c0ab2dcc48cb5e04d4c3259e6","responseId":"RESPe18c2098e689c9028879f41506f9db80926f2f2f","dontTrack":false}
