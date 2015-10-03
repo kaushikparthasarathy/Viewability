@@ -75,7 +75,7 @@ public class POC extends BaseConfig {
         if (pocpage.Search("shoes"))
 
             if (pocpage.OpenAdProd()) {
-
+                Thread.sleep(1000);
                 Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"SearchForAdAndClickOnIt\" >> src/main/resources/logcat.txt"});
                 Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
 //
@@ -98,6 +98,7 @@ public class POC extends BaseConfig {
                 WebElement adelement = pocpage.getAdElement();
                 pocpage.SwipeElementToScreenBottom(adelement);
                 pocpage.Toggle();
+                Thread.sleep(1000);
                 Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"SearchForAdAndToggleToGenerateEvent\" >> src/main/resources/logcat.txt"});
                 Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
 //
@@ -118,6 +119,7 @@ public class POC extends BaseConfig {
                     Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
 
                     pocpage.SwipeLeft(80,pocpage.getScreenHeight()/2);
+                    Thread.sleep(1000);
                     Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"SwipeOnADToProductEvent\" >> src/main/resources/logcat.txt"});
                     Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
 //
@@ -143,6 +145,7 @@ public class POC extends BaseConfig {
                     pocpage.openDrawerView();
                     Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
                     pocpage.Click(30,3*pocpage.getScreenWidth()/4);
+                    Thread.sleep(1000);
                     Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"OpenDrawerViewToSeeAd\" >> src/main/resources/logcat.txt"});
                     Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
 
@@ -170,6 +173,7 @@ public class POC extends BaseConfig {
 
             }
         pocpage.Back2();
+        Thread.sleep(1000);
 
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"PressBackButtonOnAds\" >> src/main/resources/logcat.txt"});
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
@@ -184,6 +188,7 @@ public class POC extends BaseConfig {
 
         }
         pocpage.Back1();
+        Thread.sleep(1000);
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"PressBackButtonOnAds\" >> src/main/resources/logcat.txt"});
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
 
@@ -203,8 +208,7 @@ public class POC extends BaseConfig {
             }
 
         }
-
-
+        Thread.sleep(1000);
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"CheckForEventsWhenNoAdsAppear\" >> src/main/resources/logcat.txt"});
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
 
