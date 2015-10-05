@@ -72,7 +72,10 @@ public class POC extends BaseConfig {
 
         System.out.println("SearchForAdAndClickOnIt");
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
-        if (pocpage.Search("shoes"))
+        if (pocpage.Search("shoes")){
+            WebElement adelement = pocpage.getAdElement();
+            pocpage.SwipeElementToScreenBottom(adelement);
+
 
             if (pocpage.OpenAdProd()) {
                 Thread.sleep(1000);
@@ -84,6 +87,7 @@ public class POC extends BaseConfig {
 
                 pocpage.Back2();
             }
+            }
     }
 
     @Test(priority = 2)
@@ -91,7 +95,7 @@ public class POC extends BaseConfig {
         System.out.println("SearchForAdAndToggleToGenerateEvent");
 
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
-        if(pocpage.Search("power bank")) {
+        if(pocpage.Search("shirts")) {
             pocpage.CheckAdProd();
             while (pocpage.isAdPresentInScreen()) {
                 Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
@@ -113,7 +117,7 @@ public class POC extends BaseConfig {
         System.out.println("SwipeOnADToProductEvent");
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
 
-        if(pocpage.Search("power bank"))
+        if(pocpage.Search("shirts"))
            {
                 if (pocpage.OpenAdProd()) {
                     Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
@@ -215,34 +219,111 @@ public class POC extends BaseConfig {
         pocpage.Back2();
     }
 
-//    @Test
-//    public void AdsBlockingByFilter() throws Exception {
-//
-//
-//    }
-//
-//
-//    @Test
-//    public void AdsBlockingBySort() throws Exception {
-//
-//
-//    }
+    @Test(priority = 7)
+    public void AdsBlockingByFilter() throws Exception {
+        System.out.println("AdsBlockingByFilter");
+        Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+
+        if(pocpage.Search("jeans"))
+        {
+            if (pocpage.CheckAdProd()) {
+                pocpage.ApplyFilter();
+                Thread.sleep(1000);
+                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"AdsBlockingByFilter\" >> src/main/resources/logcat.txt"});
+                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
+            }
+
+        }
+
+        pocpage.Back1();
+        pocpage.Back2();
+    }
+
+
+    @Test(priority = 8)
+    public void AdsBlockingBySort() throws Exception {
+        System.out.println("AdsBlockingBySort");
+        Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+
+        if(pocpage.Search("jeans"))
+        {
+            if (pocpage.CheckAdProd()) {
+                pocpage.ApplySort();
+                Thread.sleep(1000);
+                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"AdsBlockingBySort\" >> src/main/resources/logcat.txt"});
+                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
+            }
+
+        }
+
+        pocpage.Back1();
+        pocpage.Back2();
+
+
+    }
 //
 //
 //
 //    @Test
 //    public void pressHomeButtonOnAd() throws Exception {
+//        System.out.println("pressHomeButtonOnAd");
+//        Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+//
+//        if(pocpage.Search("shirts"))
+//        {
+//            if (pocpage.CheckAdProd()) {
+//                pocpage.pressHome();
+//                Thread.sleep(1000);
+//                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"CheckForEventsWhenNoAdsAppear\" >> src/main/resources/logcat.txt"});
+//                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
+//                driver.sendKeyEvent(0x000000bb);//switch between app
+//                  List<WebElement> elem = _driver.findElements(By.className("android.widget.FrameLayout"));
+//                  for (int i=0;i<elem.size()-1;i++){
+//                  System.out.println("elem.get(i).getAttribute(name) :: " + elem.get(i).getAttribute("name")) ;
+//                    if (elem.get(i).getAttribute("name").equals("App Name 1 text")){
+//                        System.out.println("Tapping :: " + elem.get(i).getAttribute("name")) ;
+//                        _driver.tap(1, elem.get(i), 100);
+//                        break;
+//                    }
+//                  adb shell am start -n com.flipkart.android/.SplashActivity
+//
+//                  }
+    //                pocpage.pressMenu();
+//            }
+//
+//        }
+//
+//        pocpage.Back1();
+//        pocpage.Back2();
 //
 //
 //    }
 //
 //
 //
-//    @Test
-//    public void EventsGettingTriggeredEvenBeforeCrossingMinimumThreshold() throws Exception {
+    @Test
+    public void EventsGettingTriggeredEvenBeforeCrossingMinimumThreshold() throws Exception {
+        System.out.println("EventsGettingTriggeredEvenBeforeCrossingMinimumThreshold");
+
+        Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+        if(pocpage.Search("shirts")) {
+            pocpage.CheckAdProd();
+            while (pocpage.isAdPresentInScreen()) {
+                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+                WebElement adelement = pocpage.getAdElement();
+                pocpage.SwipeElementToScreenBottom(adelement);
+                pocpage.MoveDownByHalfViewLength();
+                Thread.sleep(1000);
+                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"EventsGettingTriggeredEvenBeforeCrossingMinimumThreshold\" >> src/main/resources/logcat.txt"});
+                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
 //
-//
-//    }
+            }
+
+        }
+        pocpage.Back2();
+
+
+    }
 //
 //
 //    @Test
@@ -252,17 +333,56 @@ public class POC extends BaseConfig {
 //    }
 //
 //
-//    @Test
-//    public void openDrawerOnOrganicProductToSeeAdsANdCloseDrawerToSeeEvent() throws Exception {
-//
-//
-//    }
-//
-//    @Test
-//    public void CheckForMultipleAdviewEvents() throws Exception {
-//
-//
-//    }
+    @Test
+    public void openDrawerOnOrganicProductToSeeAdsANdCloseDrawerToSeeEvent() throws Exception {//pending positioning of add in drawer
+        System.out.println("openDrawerOnOrganicProductToSeeAdsANdCloseDrawerToSeeEvent");
+        Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+
+        if(pocpage.Search("shoes"))
+        {
+            if (pocpage.EnterProd()) {
+
+                pocpage.openDrawerView();
+                if(pocpage.CheckAdProdForDrawer()) {
+                    Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+                    WebElement adelement=pocpage.getAdElement();
+                    pocpage.SwipeElementToScreenTop(adelement);
+                    pocpage.Click(30, 3 * pocpage.getScreenWidth() / 4);
+                    Thread.sleep(1000);
+                    Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"openDrawerOnOrganicProductToSeeAdsANdCloseDrawerToSeeEvent\" >> src/main/resources/logcat.txt"});
+                    Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
+                }
+                pocpage.Back1();
+                pocpage.Back2();
+            }
+
+
+        }
+
+
+    }
+
+    @Test(priority = 13)
+    public void CheckForMultipleAdviewEvents() throws Exception {
+
+        System.out.println("CheckForMultipleAdviewEvents");
+        Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+        pocpage.SwipeCross(960, 1430, 866, 1480);
+        if(pocpage.Search("watches"))
+
+            if (pocpage.CheckAdProd()) {
+                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+                pocpage.RemoveAdFromScreen();
+                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"CheckForMultipleAdviewEvents\" >> src/main/resources/logcat.txt"});
+                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
+
+            }
+
+
+        pocpage.Back2();
+
+
+    }
 
 
 }

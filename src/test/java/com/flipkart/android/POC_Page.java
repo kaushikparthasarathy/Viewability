@@ -3,6 +3,7 @@ package com.flipkart.android;
 import com.flipkart.Pages.AppiumBasePage;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidKeyCode;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -296,6 +297,81 @@ public class POC_Page extends AppiumBasePage{
         }
     }
 
+    public boolean CheckAdProdForDrawer() throws Exception {
+        int i;
+
+        try {
+//            for(i=0;i<12;i++)
+//                SwipeToTop();
+            for (i = 0; i < 15; i++) {
+//                UiObject btView = new UiObject(new UiSelector().text("Bluetooth"));
+                if (isElementPresent(getBy(landingPageLocators.get("adproducts")))) {
+//                    compareToTopAndBottom(driver.findElement(getBy(landingPageLocators.get("adproducts"))));
+//
+
+                    return true;
+                } else
+                    SwipeToBottomAlong(getScreenWidth() / 4);
+            }
+            throw new Exception("No ad product was found in check ad prod");
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            individualTestdescription+=","+getExceptionMessage(e);
+            return false;
+        }
+    }
+
+    public boolean ApplyFilter() throws InterruptedException {
+        if (isElementPresent(getBy(landingPageLocators.get("filterbutton")))) {
+            driver.findElement(getBy(landingPageLocators.get("filterbutton"))).click();
+            if (isElementPresent(getBy(landingPageLocators.get("tooltiprefine")))) {
+                driver.findElement(getBy(landingPageLocators.get("tooltiprefine"))).click();
+                System.out.println("entered filter first");
+                if (isElementPresent(getBy(landingPageLocators.get("prodlistgroup")))) {
+                    driver.findElements(getBy(landingPageLocators.get("prodlistgroup"))).get(0).click();
+                    if (isElementPresent(getBy(landingPageLocators.get("prodlistitem")))) {
+                        driver.findElements(getBy(landingPageLocators.get("prodlistitem"))).get(0).click();
+                    }
+                }
+            }
+            Thread.sleep(2000);
+        }
+        if(isElementPresent(getBy(landingPageLocators.get("applyfilter")))) {
+            driver.findElement(getBy(landingPageLocators.get("applyfilter"))).click();
+            return true;
+        }
+        return false;
+
+    }
+
+    public boolean ApplySort(){
+        if(isElementPresent(getBy(landingPageLocators.get("Sort")))) {
+            WebElement sortelement=driver.findElement(getBy(landingPageLocators.get("Sort")));
+            sortelement.click();
+            if(isElementPresent(getBy(landingPageLocators.get("SortTitle"))))
+            Click(sortelement.getLocation().getX(),sortelement.getLocation().getY());
+            if(!isElementPresent(getBy(landingPageLocators.get("SortTitle")))&&isElementPresent(getBy(landingPageLocators.get("Sort"))))
+            return true;
+        }
+        return false;
+
+    }
+
+    public void pressHome(){
+        driver.sendKeyEvent(AndroidKeyCode.HOME);
+
+    }
+
+    public void pressMenu(){
+        driver.sendKeyEvent(AndroidKeyCode.MENU);
+
+    }
+
+    public void MoveDownByHalfViewLength(){
+        SwipeToTop(getViewSize().getHeight() / 2);
+    }
+
     public boolean OpenAdProd() throws Exception {
 
         try {
@@ -442,6 +518,7 @@ public class POC_Page extends AppiumBasePage{
     }
 
 
+
     public boolean openDrawerView() throws Exception {
         try {
             String prodtitle1 = driver.findElement(getBy(productPageLocators.get("ProductTitleid"))).getText();
@@ -582,9 +659,9 @@ public class POC_Page extends AppiumBasePage{
 
         int distance=elementY-topEnd;
         if(distance>0)
-            SwipeToBottom(Math.abs(distance));
+            SwipeToBottom(webElement.getLocation().getX(),Math.abs(distance));
         else
-            SwipeToTop(Math.abs(distance));
+            SwipeToTop(webElement.getLocation().getX(),Math.abs(distance));
 
         // appium converts press-wait-moveto-release to a swipe action
 
@@ -606,9 +683,9 @@ public class POC_Page extends AppiumBasePage{
 
         int distance=bottomEnd-elementY;
         if(distance>0)
-            SwipeToTop(Math.abs(distance));
+            SwipeToTop(webElement.getLocation().getX(),Math.abs(distance));
         else
-            SwipeToBottom(Math.abs(distance));
+            SwipeToBottom(webElement.getLocation().getX(),Math.abs(distance));
 
     }
 
@@ -683,9 +760,24 @@ public class POC_Page extends AppiumBasePage{
         ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/4, Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/4-distance, 0);
     }
 
+    public void SwipeToBottomAlong(int x) {
+        ((AppiumDriver) driver).swipe(x, getScreenBottom()-getScreenHeight()/4, x, getScreenBottom()-getScreenHeight()/6, 0);
+    }
+
+    public void SwipeToBottom(int x,int distance) {
+        ((AppiumDriver) driver).swipe(x, getScreenBottom()-getScreenHeight()/4, x, getScreenBottom()-getScreenHeight()/4-distance, 0);
+    }
+
 
     public void SwipeToTop() {
         ((AppiumDriver) driver).swipe(Math.round(ScreeWidth() / 2), getScreenTop()+getScreenHeight()/6, Math.round(ScreeWidth() / 2), getScreenBottom()-getScreenHeight()/6, 0);
+    }
+
+    public void SwipeToTop(int x,int distance) {
+        ((AppiumDriver) driver).swipe(x, getScreenTop()+getScreenHeight()/6, x, getScreenTop()+getScreenHeight()/6+distance, 0);
+    }
+    public void SwipeToTopAlong(int x) {
+        ((AppiumDriver) driver).swipe(x, getScreenTop()+getScreenHeight()/6, x, getScreenBottom()-getScreenHeight()/6, 0);
     }
 
     public void SwipeToTop(int distance) {
