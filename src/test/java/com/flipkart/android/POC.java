@@ -106,27 +106,30 @@ public class POC extends BaseConfig {
 
         System.out.println("SearchForAdAndClickOnIt");
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
-        if (pocpage.Search("shoes")){
-            WebElement adelement = pocpage.getAdElement();
-            pocpage.SwipeElementToScreenBottom(adelement);
-            Process p1 = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat  -s AD_SDK_LOG  > src/main/resources/logcat.txt"});
-
-            if (pocpage.OpenAdProd()) {
-                Thread.sleep(1000);
-                File logcat = new File("src/main/resources/logcat.txt");
-
-                boolean status = pocpage.grep(new FileReader(logcat), "\"activity\":\"TAP\",\"event\":\"adInteraction\"", "Event String");
-
-                logcat.delete();
-                p1.destroy();
-                System.out.println("status::::"+status);
-                assertEquals(status, true, "adinteraction issue");
+        if (pocpage.Search("bottles")){
+            if(pocpage.CheckAdProd()) {
+                WebElement adelement = pocpage.getAdElement();
+                pocpage.SwipeElementToScreenBottom(adelement);
+                Process p1 = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat  -s AD_SDK_LOG  > src/main/resources/logcat.txt"});
 
 
-                pocpage.Back1();
+               pocpage.OpenAdProd();
+                    Thread.sleep(1000);
+                    File logcat = new File("src/main/resources/logcat.txt");
 
-                pocpage.Back2();
-            }
+                    boolean status = pocpage.grep(new FileReader(logcat), "\"activity\":\"TAP\",\"event\":\"adInteraction\"", "Event String");
+
+                    logcat.delete();
+                    p1.destroy();
+                    System.out.println("status::::" + status);
+                    assertEquals(status, true, "adinteraction issue");
+
+
+                    pocpage.Back1();
+
+                    pocpage.Back2();
+                }
+
         }
     }
 
@@ -336,46 +339,46 @@ public class POC extends BaseConfig {
 
 
     }
-//
-//
-//
-//    @Test
-//    public void pressHomeButtonOnAd() throws Exception {
-//        System.out.println("pressHomeButtonOnAd");
-//        Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
-//
-//        if(pocpage.Search("shirts"))
-//        {
-//            if (pocpage.CheckAdProd()) {
-//                pocpage.pressHome();
-//                Thread.sleep(1000);
-//                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"CheckForEventsWhenNoAdsAppear\" >> src/main/resources/logcat.txt"});
-//                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
-//                driver.sendKeyEvent(0x000000bb);//switch between app
-//                  List<WebElement> elem = _driver.findElements(By.className("android.widget.FrameLayout"));
-//                  for (int i=0;i<elem.size()-1;i++){
-//                  System.out.println("elem.get(i).getAttribute(name) :: " + elem.get(i).getAttribute("name")) ;
-//                    if (elem.get(i).getAttribute("name").equals("App Name 1 text")){
-//                        System.out.println("Tapping :: " + elem.get(i).getAttribute("name")) ;
-//                        _driver.tap(1, elem.get(i), 100);
-//                        break;
-//                    }
-//                  adb shell am start -n com.flipkart.android/.SplashActivity
-//
-//                  }
-    //                pocpage.pressMenu();
-//            }
-//
-//        }
+
+
+
+////    @Test
+////    public void pressHomeButtonOnAd() throws Exception {
+////        System.out.println("pressHomeButtonOnAd");
+////        Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+////
+////        if(pocpage.Search("shirts"))
+////        {
+////            if (pocpage.CheckAdProd()) {
+////                pocpage.pressHome();
+////                Thread.sleep(1000);
+////                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"CheckForEventsWhenNoAdsAppear\" >> src/main/resources/logcat.txt"});
+////                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
+////                driver.sendKeyEvent(0x000000bb);//switch between app
+////                  List<WebElement> elem = _driver.findElements(By.className("android.widget.FrameLayout"));
+////                  for (int i=0;i<elem.size()-1;i++){
+////                  System.out.println("elem.get(i).getAttribute(name) :: " + elem.get(i).getAttribute("name")) ;
+////                    if (elem.get(i).getAttribute("name").equals("App Name 1 text")){
+////                        System.out.println("Tapping :: " + elem.get(i).getAttribute("name")) ;
+////                        _driver.tap(1, elem.get(i), 100);
+////                        break;
+////                    }
+////                  adb shell am start -n com.flipkart.android/.SplashActivity
+////
+////                  }
+////                    pocpage.pressMenu();
+////            }
+////
+////        }
 //
 //        pocpage.Back1();
 //        pocpage.Back2();
 //
 //
 //    }
-//
-//
-//
+
+
+
     @Test(priority = 12)
     public void EventsGettingTriggeredEvenBeforeCrossingMinimumThreshold() throws Exception {
         System.out.println("EventsGettingTriggeredEvenBeforeCrossingMinimumThreshold");
@@ -399,15 +402,15 @@ public class POC extends BaseConfig {
 
 
     }
-//
+
 //
 //    @Test
 //    public void BringingAppBackFromStackAndCreatingAdEvents() throws Exception {
 //
 //
 //    }
-//
-//
+
+
     @Test(priority = 14)
     public void openDrawerOnOrganicProductToSeeAdsANdCloseDrawerToSeeEvent() throws Exception {//pending positioning of add in drawer
         System.out.println("openDrawerOnOrganicProductToSeeAdsANdCloseDrawerToSeeEvent");

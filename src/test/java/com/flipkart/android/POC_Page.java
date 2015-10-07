@@ -216,9 +216,17 @@ public class POC_Page extends AppiumBasePage{
     public void RemoveAdFromScreen(){
 
 //        WebElement layoutelement = driver.findElementByXPath("(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]");
-        while(isElementPresent(getBy("xpath=(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]"))){
+//        while(isElementPresent(getBy("xpath=(//android.widget.ImageView[@resource-id='com.flipkart.android:id/product_list_ad_image']/ancestor::android.widget.LinearLayout)[last()]"))){
+//            SwipeToBottom();
+//        }
+        int i=0;
+        while (i<3){
             SwipeToBottom();
+            i++;
         }
+
+
+
     }
 
     public boolean isAdPresentInScreen(){
