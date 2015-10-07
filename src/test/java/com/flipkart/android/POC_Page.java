@@ -184,7 +184,7 @@ public class POC_Page extends AppiumBasePage{
 
 
 
-    public List<String> grep(Reader inReader, String searchFor) throws IOException {
+    public boolean grep(Reader inReader, String searchFor1, String searchFor2) throws IOException {
         System.out.println("entered grep");
         BufferedReader reader = null;
         String line;
@@ -194,21 +194,23 @@ public class POC_Page extends AppiumBasePage{
 
             while ((line = reader.readLine()) != null) {
 
-                if (line.contains(searchFor)) {
+                if (line.contains(searchFor1)) {
+                    if (line.contains(searchFor2))
+                        System.out.println("lines::::::" + line);
+                    return true;
 
-
-                    lines.add(new String(line));
+//                        lines.add(new String(line));
 
                 }
             }
-        } finally {
-
-            if (reader != null) {
-                reader.close();
-            }
+            return false;
         }
-
-        return lines;
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            individualTestdescription+=","+getExceptionMessage(e);
+//            Back2();
+            return false;
+        }
     }
 
     public void RemoveAdFromScreen(){
@@ -357,6 +359,58 @@ public class POC_Page extends AppiumBasePage{
         return false;
 
     }
+
+    public boolean AddCartItems() throws Exception {
+        try {
+            int i=0,j=0;
+            while(j<3) {
+                while(i<5&&!isElementPresent(getBy(productPageLocators.get("sizeoption")))){
+                    SwipeDownSmall();
+                    i++;
+                }
+
+                if (isElementPresent(getBy(productPageLocators.get("sizeoption")))) {
+
+                    if (isElementPresent(getBy(productPageLocators.get("size")))) {
+                        compareToTopAndBottom(driver.findElements(getBy(productPageLocators.get("size"))).get(0));
+                        driver.findElements(getBy(productPageLocators.get("size"))).get(j).click();
+
+
+                        Thread.sleep(3000);
+                    } else {
+                        driver.findElements(getBy(productPageLocators.get("sizeoption"))).get(0).click();
+                        compareToTopAndBottom(driver.findElement(getBy(productPageLocators.get("size"))));
+                        driver.findElements(getBy(productPageLocators.get("size"))).get(j).click();
+
+
+                        Thread.sleep(3000);
+                    }
+                }
+
+                if (!checkForOOS()&&isElementPresent(getBy(productPageLocators.get("addcart")))) {
+                    driver.findElement(getBy(productPageLocators.get("addcart"))).click();
+
+                    Thread.sleep(5000);
+                    break;
+                }
+                else
+                    j++;
+            }
+
+            if(checkForOOS()==true)
+                throw new Exception("Product out of stock ");
+
+            Thread.sleep(3000);
+            return true;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            individualTestdescription+=","+getExceptionMessage(e);
+
+            return false;
+        }
+    }
+
 
     public void pressHome(){
         driver.sendKeyEvent(AndroidKeyCode.HOME);

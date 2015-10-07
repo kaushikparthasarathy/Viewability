@@ -3,9 +3,15 @@ package com.flipkart.android;
 import com.flipkart.Drivers.BaseConfig;
 import org.openqa.selenium.WebElement;
 import org.testng.ITestResult;
+import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+
+import java.io.File;
+import java.io.FileReader;
+
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created on 25/08/15 by kaushik.p.
@@ -28,69 +34,136 @@ public class POC extends BaseConfig {
     @AfterMethod
     public void tearDown(ITestResult result) {
 
-        if (result.getStatus() == ITestResult.FAILURE) {
+
             pocpage.BackInfinite();
 
-        }
+
 
     }
 
-    @Test(priority = 0)
-    public void SearchForAdAndRemoveAdFromScreen() throws Exception {
+    @Test(priority =  0)
+    public void AdBeacon() throws Exception {
+        System.out.println("Search for AdBeacon");
+        Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+        Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+        Process p1 = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat  -s AD_SDK_LOG  > src/main/resources/logcat.txt"});
+
+        Thread.sleep(4000);
+
+        if (pocpage.Search("tablet"))
+            if (pocpage.CheckAdProd()) {
+                File logcat = new File("src/main/resources/logcat.txt");
+                boolean status = pocpage.grep(new FileReader(logcat), "\"event\":\"adBeacon\"", "Event String");
+
+                logcat.delete();
+                p1.destroy();
+                System.out.println("status::::" + status);
+                assertEquals(status, true, "Adbeacon issue");
+
+            }
+            else {
+                throw new SkipException("Ads not found");
+
+            }
+    }
+
+    @Test(priority = 1)
+    public void AdView() throws Exception {
         System.out.println("SearchForAdAndRemoveAdFromScreen");
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
         pocpage.SwipeCross(960, 1430, 866, 1480);
-        if(pocpage.Search("watches"))
+        if(pocpage.Search("bottles"))
 
             if (pocpage.CheckAdProd()) {
                 Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+                Process p1 = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat  -s AD_SDK_LOG  > src/main/resources/logcat.txt"});
                 pocpage.RemoveAdFromScreen();
-                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"SearchForAdAndRemoveAdFromScreen\" >> src/main/resources/logcat.txt"});
-                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
-//                Process p1 = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -d -s AD_SDK_LOG  > src/main/resources/logcat.txt"});
-////                Thread.sleep(4000);
-//
-//                Thread.sleep(4000);
-//
-//                File logcat = new File("src/main/resources/logcat.txt");
-//
-//
-//                List<String> adlines = pocpage.grep(new FileReader(logcat), "adView");
-//
-//                logcat.delete();
-//                p1.destroy();
-//                System.out.println(adlines.get(0));
 
+                Thread.sleep(4000);
+
+                File logcat = new File("src/main/resources/logcat.txt");
+
+
+                boolean status = pocpage.grep(new FileReader(logcat), "\"event\":\"adView\",\"maxViewPercentage\":100", "Event String");
+
+                logcat.delete();
+                p1.destroy();
+                System.out.println("status::::"+status);
+                assertEquals(status, true, "adview issue");
+                pocpage.Back2();
 
             }
+            else {
+                throw new SkipException("Ads not found");
 
-
-        pocpage.Back2();
+            }
     }
-    @Test(priority = 1)
-    public void SearchForAdAndClickOnIt() throws Exception {
+
+
+
+    @Test(priority = 2)
+    public void AdInteraction_Tap() throws Exception {
 
         System.out.println("SearchForAdAndClickOnIt");
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
         if (pocpage.Search("shoes")){
             WebElement adelement = pocpage.getAdElement();
             pocpage.SwipeElementToScreenBottom(adelement);
-
+            Process p1 = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat  -s AD_SDK_LOG  > src/main/resources/logcat.txt"});
 
             if (pocpage.OpenAdProd()) {
                 Thread.sleep(1000);
-                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "echo \"SearchForAdAndClickOnIt\" >> src/main/resources/logcat.txt"});
-                Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -t 5000 -s AD_SDK_LOG >> src/main/resources/logcat.txt"});
-//
+                File logcat = new File("src/main/resources/logcat.txt");
+
+                boolean status = pocpage.grep(new FileReader(logcat), "\"activity\":\"TAP\",\"event\":\"adInteraction\"", "Event String");
+
+                logcat.delete();
+                p1.destroy();
+                System.out.println("status::::"+status);
+                assertEquals(status, true, "adinteraction issue");
+
 
                 pocpage.Back1();
 
                 pocpage.Back2();
             }
+        }
+    }
+
+
+    @Test(priority = 3)
+    public void AdLead() throws Exception {
+        System.out.println("SearchForAdAndToggleToGenerateEvent");
+
+        Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
+        if (pocpage.Search("mobiles"))
+
+            if (pocpage.OpenAdProd()) {
+                Thread.sleep(1000);
+
+                Process p1 = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat  -s AD_SDK_LOG  > src/main/resources/logcat.txt"});
+                pocpage.AddCartItems();
+
+                File logcat = new File("src/main/resources/logcat.txt");
+
+                boolean status = pocpage.grep(new FileReader(logcat), "\"activity\":\"ADD_CART\",\"event\":\"adLead\"", "Event String");
+
+                logcat.delete();
+                p1.destroy();
+                System.out.println("status::::"+status);
+                assertEquals(status, true, "adlead issue");
+
+                pocpage.Back1();
+                pocpage.Back2();
+            }
+            else {
+                throw new SkipException("Ads not found");
+
             }
     }
 
-    @Test(priority = 2)
+
+    @Test(priority = 4)
     public void SearchForAdAndToggleToGenerateEvent() throws Exception {
         System.out.println("SearchForAdAndToggleToGenerateEvent");
 
@@ -112,7 +185,9 @@ public class POC extends BaseConfig {
         pocpage.Back2();
     }
 
-    @Test(priority = 3)
+
+
+    @Test(priority = 5)
     public void SwipeOnADToProductEvent() throws Exception {
         System.out.println("SwipeOnADToProductEvent");
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
@@ -137,7 +212,7 @@ public class POC extends BaseConfig {
 
     }
 
-    @Test(priority = 4)
+    @Test(priority = 6)
     public void OpenDrawerViewToSeeAd() throws Exception {
         System.out.println("OpenDrawerViewToSeeAd");
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
@@ -163,7 +238,7 @@ public class POC extends BaseConfig {
     }
 
 
-    @Test(priority = 5)
+    @Test(priority = 7)
     public void PressBackButtonOnAds() throws Exception {
         System.out.println("PressBackButtonOnAds");
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
@@ -200,7 +275,7 @@ public class POC extends BaseConfig {
         pocpage.Back2();
     }
 
-    @Test(priority = 6)
+    @Test(priority = 8)
     public void CheckForEventsWhenNoAdsAppear() throws Exception {
         System.out.println("CheckForEventsWhenNoAdsAppear");
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
@@ -219,7 +294,7 @@ public class POC extends BaseConfig {
         pocpage.Back2();
     }
 
-    @Test(priority = 7)
+    @Test(priority = 9)
     public void AdsBlockingByFilter() throws Exception {
         System.out.println("AdsBlockingByFilter");
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
@@ -240,7 +315,7 @@ public class POC extends BaseConfig {
     }
 
 
-    @Test(priority = 8)
+    @Test(priority = 10)
     public void AdsBlockingBySort() throws Exception {
         System.out.println("AdsBlockingBySort");
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
@@ -301,7 +376,7 @@ public class POC extends BaseConfig {
 //
 //
 //
-    @Test
+    @Test(priority = 12)
     public void EventsGettingTriggeredEvenBeforeCrossingMinimumThreshold() throws Exception {
         System.out.println("EventsGettingTriggeredEvenBeforeCrossingMinimumThreshold");
 
@@ -333,7 +408,7 @@ public class POC extends BaseConfig {
 //    }
 //
 //
-    @Test
+    @Test(priority = 14)
     public void openDrawerOnOrganicProductToSeeAdsANdCloseDrawerToSeeEvent() throws Exception {//pending positioning of add in drawer
         System.out.println("openDrawerOnOrganicProductToSeeAdsANdCloseDrawerToSeeEvent");
         Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "adb logcat -c"});
@@ -362,7 +437,7 @@ public class POC extends BaseConfig {
 
     }
 
-    @Test(priority = 13)
+    @Test(priority = 15)
     public void CheckForMultipleAdviewEvents() throws Exception {
 
         System.out.println("CheckForMultipleAdviewEvents");
