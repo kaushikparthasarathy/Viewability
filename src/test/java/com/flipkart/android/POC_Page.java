@@ -370,43 +370,12 @@ public class POC_Page extends AppiumBasePage{
 
     public boolean AddCartItems() throws Exception {
         try {
-            int i=0,j=0;
-            while(j<3) {
-                while(i<5&&!isElementPresent(getBy(productPageLocators.get("sizeoption")))){
-                    SwipeDownSmall();
-                    i++;
-                }
-
-                if (isElementPresent(getBy(productPageLocators.get("sizeoption")))) {
-
-                    if (isElementPresent(getBy(productPageLocators.get("size")))) {
-                        compareToTopAndBottom(driver.findElements(getBy(productPageLocators.get("size"))).get(0));
-                        driver.findElements(getBy(productPageLocators.get("size"))).get(j).click();
-
-
-                        Thread.sleep(3000);
-                    } else {
-                        driver.findElements(getBy(productPageLocators.get("sizeoption"))).get(0).click();
-                        compareToTopAndBottom(driver.findElement(getBy(productPageLocators.get("size"))));
-                        driver.findElements(getBy(productPageLocators.get("size"))).get(j).click();
-
-
-                        Thread.sleep(3000);
-                    }
-                }
 
                 if (!checkForOOS()&&isElementPresent(getBy(productPageLocators.get("addcart")))) {
                     driver.findElement(getBy(productPageLocators.get("addcart"))).click();
 
                     Thread.sleep(5000);
-                    break;
                 }
-                else
-                    j++;
-            }
-
-            if(checkForOOS()==true)
-                throw new Exception("Product out of stock ");
 
             Thread.sleep(3000);
             return true;

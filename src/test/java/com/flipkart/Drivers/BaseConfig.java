@@ -39,7 +39,7 @@ public class BaseConfig {
     }
     public DesiredCapabilities getCapabilities1(){
 
-        File appDir = new File("/Users/kaushik.p/Documents/Apks/");
+        File appDir = new File("/Users/krishna.sahithi/Downloads/");
         File app = new File(appDir, "flipkart_ecom_app-debug.apk");
 
 

@@ -12,7 +12,6 @@
       <entry name="!?*.flex" />
       <entry name="!?*.kt" />
       <entry name="!?*.clj" />
-      <entry name="!?*.aj" />
     </wildcardResourcePatterns>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="false">
@@ -23,11 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="ViewabilityTest" />
+        <module name="com.flipkart.android" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ViewabilityTest" target="1.6" />
+      <module name="com.flipkart.android" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>
+
