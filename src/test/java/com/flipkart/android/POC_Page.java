@@ -360,7 +360,7 @@ public class POC_Page extends AppiumBasePage{
             WebElement sortelement=driver.findElement(getBy(landingPageLocators.get("Sort")));
             sortelement.click();
             if(isElementPresent(getBy(landingPageLocators.get("SortTitle"))))
-            Click(sortelement.getLocation().getX(),sortelement.getLocation().getY());
+                Click(getScreenWidth()/2,getScreenBottom()-1);
             if(!isElementPresent(getBy(landingPageLocators.get("SortTitle")))&&isElementPresent(getBy(landingPageLocators.get("Sort"))))
             return true;
         }
@@ -481,6 +481,12 @@ public class POC_Page extends AppiumBasePage{
         }
     }
 
+    public String getProdTitle(){
+        String prodtitle=null;
+        if(isElementPresent(getBy(productPageLocators.get("productname"))))
+            prodtitle=driver.findElement(getBy(productPageLocators.get("productname"))).getText();
+        return prodtitle;
+    }
 
     public boolean EnterProd() throws Exception {
         try {
